@@ -1,0 +1,27 @@
+GET http://localhost:3000/movements
+
+###
+GET http://localhost:3000/movements/1
+
+###
+POST http://localhost:3000/movements
+Content-Type: application/json
+
+{
+    "movement": "Jump",
+    "description": "A quick upward motion",
+    "type_id": 2
+}
+
+###
+PUT http://localhost:3000/movements/2
+Content-Type: application/json
+
+{
+    "movement": "Run",
+    "description": "Fast-paced movement on foot",
+    "type_id": 2
+}
+
+###
+DELETE http://localhost:3000/movements/2

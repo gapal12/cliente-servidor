@@ -1,0 +1,16 @@
+//identificar los recuerso que va usar mi sistema, ejemplo spotify las canciones, artistas, etc, en caso de sistema escolar seria maestros , aliumnos, materias, etc
+
+get http://localhost:3000/usuarios
+
+###
+get http://localhost:3000/usuarios/7
+
+###
+POST http://localhost:3000/usuarios/
+Content-Type: application/json
+
+{
+    "nombre":"Julio",
+    "apellido":"aguilar",
+    "email":"julio@"
+}

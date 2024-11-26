@@ -1,0 +1,16 @@
+GET http://localhost:3000/pokemons_movements
+
+###
+GET http://localhost:3000/pokemons_movements/1
+
+###
+POST http://localhost:3000/pokemons_movements
+Content-Type: application/json
+
+{
+    "pokemon_id": 1,
+    "movement_id": 3
+}
+
+###
+DELETE http://localhost:3000/pokemons_movements/1
