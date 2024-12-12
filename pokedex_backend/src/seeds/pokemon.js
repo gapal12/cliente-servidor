@@ -12,9 +12,27 @@ const pokemonsSeeder = async ()=> {
         await conn.query('TRUNCATE TABLE pokemons')
         await conn.query('SET FOREIGN_KEY_CHECKS = 1')
 
-        pokemons.results.forEach(async(pokemon)=>{
-            await conn.query('INSERT INTO pokemons (pokemon) VALUES(?)',[pokemon.name])
-        })
+        const pokemonList=await Promise.all(
+        pokemons.results.map(async(pokemon)=>{   
+         const poke = await fetch(pokemon.url).then( res => res.json());
+        
+         return{
+            pokemon:pokemon.name,
+            image:  poke.sprites.other.dream_world.front_default
+         }
+        })  
+    )
+
+    //await Promise.all(
+    pokemonList.forEach(async({pokemon, image})=>{
+        await conn.query('INSERT INTO pokemons(pokemon,image) VALUES (?,?) ',[
+            pokemon, image
+        ])
+    })  
+//)
+        
+
+    
         console.log('Seeded pokemons')
 
    }catch(error){

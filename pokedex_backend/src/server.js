@@ -2,6 +2,7 @@ const express = require('express');
 const { pokemonRouter } = require('./routes/pokemon');
 const { movementRouter } = require('./routes/movements'); // Asegúrate de usar el nombre correcto del router
 const { pokemonsMovementsRouter } = require('./routes/pokemons_movements'); // Importar el nuevo router
+const cors = require('cors');
 
 // Crear clase
 class Server {
@@ -15,6 +16,7 @@ class Server {
      
     middlewares() {
         this.app.use(express.json());
+        this.app.use(cors());
     }
 
     routes() {

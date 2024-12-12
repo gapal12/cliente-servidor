@@ -149,6 +149,20 @@ const deletePokemon = async (req=request, res=response) =>{
         }
 }
 
+const get3randomPokemons = async (req, res) =>{
+    let conn
+
+    try{
+        conn=await pool.getConnection()
+        const pokemons = await conn.query('SELECT * FROM pokemons ORDER BY RAND() LIMIT 3')
+        res.status(200).send(pokemons)
+    }catch(error){
+        res.status(500).send(error)
+        return
+    }finally{
+        if(conn) conn.end()
+    }
+}
 
 module.exports = {
     getAll,
@@ -156,4 +170,5 @@ module.exports = {
     addPokemon,
     updatePokemon,
     deletePokemon,
+    get3randomPokemons,
 }
